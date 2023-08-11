@@ -4,6 +4,11 @@ const cookieParser=require('cookie-parser')
 const bodyParser=require('body-parser')
 const dotenv=require('dotenv')
 const db = require('./config/db.js')
+const authRouth=require('./routes/auth.js')
+const hotelRouth=require('./routes/hotel.js')
+const roomRouth=require('./routes/room.js')
+const userRouth=require('./routes/user.js')
+
 
 dotenv.config();
 
@@ -12,7 +17,10 @@ app.use(cors())
 app.use(bodyParser.json({limit:'30mb', extended:true}))
 app.use(bodyParser.urlencoded({limit:'30mb', extended:true}))
 app.use(cookieParser)
-
+app.use('/',authRouth)
+app.use('/',hotelRouth)
+app.use('/',roomRouth)
+app.use('/',userRouth)
 db();
 
 const PORT =5000;
